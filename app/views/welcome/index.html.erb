@@ -1,1 +1,7 @@
-<h1>Stripe Application</h1>
+<% provide(:title, 'Welcome to Stripe') %>
+<%= render 'layouts/error' %>
+<div class="jumbotron">
+  <h1>Stripe Application</h1>
+  <p>Test application for setting up Stripe's subscription billing service.</p>
+  <%= link_to "Create Account", root_path, class: 'btn btn-primary btn-lg' %>
+</div>
