@@ -2,6 +2,7 @@ require 'sidekiq/web'
 
 Stripe::Application.routes.draw do
   
+  devise_for :users
   root 'welcome#index'
   mount Sidekiq::Web, at: '/sidekiq'
   
