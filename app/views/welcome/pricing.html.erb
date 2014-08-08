@@ -1,0 +1,37 @@
+<% provide(:title, 'Pricing') %>
+<div id="welcome" class="hero-unit span7">
+  <h1>Pricing</h1>
+  <h3>Build a successful subscription site.</h3>
+</div>
+<div class="col-md-12 plans">
+  <div class="col-md-4 well">
+    <div class="plan"><h2>Solo</h2></div>
+    <ul class="unstyled">
+      <li>Up to 2 users</li>
+      <li>Unlimited Clients</li>
+      <li>Unlimited Invoices</li>
+    </ul>
+    <h3>$9/month</h3>
+    <%= link_to 'Start Free Trial', new_user_registration_path(:plan => '1'), :class => 'btn btn-primary' %> 
+  </div>
+  <div class="col-md-4 well featured">
+    <div class="plan featured-plan"><h2>Gold</h2></div>
+    <ul class="unstyled">
+      <li>Up to 10 users</li>
+      <li>Unlimited Clients</li>
+      <li>Unlimited Invoices</li>
+    </ul>
+    <h3>$19/month</h3>
+    <%= link_to 'Start Free Trial', new_user_registration_path(:plan => '2'), :class => 'btn btn-primary' %> 
+  </div>
+  <div class="col-md-4 well">
+    <div class="plan"><h2>Platinum</h2></div>
+    <ul class="unstyled">
+      <li>Up to 20 users</li>
+      <li>Unlimited Clients</li>
+      <li>Unlimited Invoices</li>
+    </ul>
+    <h3>$29/month</h3>
+    <%= link_to 'Start Free Trial', new_user_registration_path(:plan => '3'), :class => 'btn btn-primary' %> 
+  </div>
+</div>

@@ -24,6 +24,8 @@ gem 'sidekiq', '~> 3.2.1'
 gem 'sinatra', require: false
 gem 'slim'
 
+gem 'stripe'
+
 group :development, :test do
   gem 'foreman'
   gem 'annotate'

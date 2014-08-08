@@ -1,0 +1,14 @@
+<%= render 'layouts/error' %>
+<h3>Current Plan:</h3>
+
+<h3>Invoices</h3>
+<p>Your invoices are being emailed to:</p>
+<%= link_to "Update Invoice", root_path %>
+
+
+<h3>Credit Card </h3>
+<%= link_to "Update Credit Card Detail", edit_subscription_path(current_user.subscription) %>
+
+
+<h3>Cancel Your Account</h3>
+<%= link_to ' Delete', cancel_subscription_path, data: {confirm: 'Are you sure you want to delete this account, no take backsies?'}, :class => 'btn float_right' %>

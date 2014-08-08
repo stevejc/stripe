@@ -2,8 +2,13 @@ require 'sidekiq/web'
 
 Stripe::Application.routes.draw do
   
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'registrations' }
   root 'welcome#index'
+  get '/pricing', to: 'welcome#pricing'
+  resources :subscriptions
+  get '/cancel_subscription', to: 'subscriptions#cancel_subscription', as: :cancel_subscription
+  get '/no_card', to: 'subscriptions#no_card', as: :no_card
+  post '/buy', to:'subscriptions#create', as: :buy
   mount Sidekiq::Web, at: '/sidekiq'
   
   # The priority is based upon order of creation: first created -> highest priority.
