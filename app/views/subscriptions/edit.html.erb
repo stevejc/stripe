@@ -1,25 +1,26 @@
-<%= form_for @subscription do |f| %>
-  
-  <%= f.hidden_field :stripe_card_token %>
+<div class="col-md-6 col-md-offset-3 panel panel-default">
+  <div class="panel-body">
+    <h2>Update Your Credit Card</h2>
+    <%= form_for @subscription do |f| %>
+      <%= f.hidden_field :stripe_card_token %>
+      <div class="form-group">
+        <%= label_tag :card_number, "Credit Card Number", class: "control-label" %>
+        <%= text_field_tag :card_number, nil, name: nil, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :card_code, "Security Code on Card (CVV)", class: "control-label" %>
+        <%= text_field_tag :card_code, nil, name: nil, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :card_month, "Expiration Date (MM/YY)", class: "control-label" %>
+        <%= text_field_tag :card_month, nil, name: nil, placeholder: "MM", class: "form-control exp_date" %> /
+        <%= text_field_tag :card_year, nil, name: nil, placeholder: "YY", class: "form-control exp_date" %>
+      </div>     
+      <%= f.submit "Update Credit Card", class: 'btn btn-primary' %>
+      <div id="stripe_error">
+        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<div class="field">
-  <%= label_tag :card_number, "Credit Card Number" %>
-  <%= text_field_tag :card_number, nil, name: nil %>
-</div>
-<div class="field">
-  <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-  <%= text_field_tag :card_code, nil, name: nil %>
-</div>
-<div class="field">
-  <%= label_tag :card_month, "Card Expiration" %>
-  <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-</div>
-<div class="actions">
-<%= f.submit "Update Credit Card" %>
-</div>
-<div id="stripe_error">
-  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-</div>
-
-<% end %>

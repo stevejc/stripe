@@ -22,7 +22,7 @@ subscription =
       $('#subscription_stripe_card_token').val(response.id)
       $('.edit_subscription')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('div#stripe_error').addClass( "alert alert-danger" ).text(response.error.message)
       $('input[type=submit]').attr('disabled', false)
 
 $(document).ready(ready)
