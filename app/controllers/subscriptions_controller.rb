@@ -16,8 +16,7 @@ class SubscriptionsController < ApplicationController
   
   def cancel_subscription
     @subscription = current_user.subscription
-    customer = Stripe::Customer.retrieve(@subscription.stripe_id)
-    customer.subscriptions.retrieve(customer.subscription.id).delete(at_period_end: true)
+    CancelCustomerWorker.perform_async(@subscription.id)
     # Time.at(customer.subscription.current_period_end).strftime("%m/%d/%Y")
     # do we need to track plan status and date plan is cancelled
     redirect_to subscriptions_path, :notice => "Your account has been cancelled."
