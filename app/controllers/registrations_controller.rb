@@ -6,8 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def after_sign_up_path_for(resource)
-    customer = Stripe::Customer.create(description: "user_id #{current_user.id}", email: current_user.email, plan: params[:user][:plan])
-    Subscription.create(user_id: current_user.id, billing_email: current_user.email, plan: params[:user][:plan], stripe_id: customer.id, free_trial_expiration: (Date.current + 31))
+    CreateCustomerWorker.perform_async(current_user.id, params[:user][:plan])
     root_path
   end
   

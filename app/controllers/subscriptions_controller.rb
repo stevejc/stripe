@@ -9,11 +9,8 @@ class SubscriptionsController < ApplicationController
   end
   
   def update
-    @subscription = current_user.subscription
-    customer = Stripe::Customer.retrieve(@subscription.stripe_id)
-    customer.card = params[:subscription][:stripe_card_token]
-    customer.save
-    @subscription.update_attributes(card_last4: customer.active_card.last4, card_type: customer.active_card.brand, card_expiration: Date.new(customer.active_card.exp_year, customer.active_card.exp_month, -1).strftime("%Y-%m-%d"))
+    subscription = current_user.subscription
+    UpdateCustomerWorker.perform_async(subscription.id, params[:subscription][:stripe_card_token])
     redirect_to subscriptions_path, :notice => "You credit card information has been updated!"
   end
   
