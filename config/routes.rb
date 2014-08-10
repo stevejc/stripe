@@ -7,6 +7,8 @@ Stripe::Application.routes.draw do
   get '/pricing', to: 'welcome#pricing'
   resources :subscriptions
   get '/cancel_subscription', to: 'subscriptions#cancel_subscription', as: :cancel_subscription
+  get '/change_plan', to: 'subscriptions#change_plan'
+  get '/update_change_plan', to: 'subscriptions#update_plan_change'
   get '/no_card', to: 'subscriptions#no_card', as: :no_card
   post '/buy', to:'subscriptions#create', as: :buy
   mount Sidekiq::Web, at: '/sidekiq'

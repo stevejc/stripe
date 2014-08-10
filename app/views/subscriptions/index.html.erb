@@ -1,6 +1,7 @@
 <%= render 'layouts/error' %>
 <h1> Billing and Invoices</h1>
 <h3>Current Plan: <%= @subscription.name %></h3>
+<%= link_to "Change Plan", change_plan_path %>
 
 
 <h3>Invoices</h3>

@@ -15,6 +15,16 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path, :notice => "You credit card information has been updated!"
   end
   
+  def change_plan
+  end
+  
+  def update_plan_change
+    subscription = current_user.subscription
+    UpdatePlanWorker.perform_async(subscription.id, params[:plan])
+    subscription.update_attributes(plan_id: params[:plan])
+    redirect_to subscriptions_path, :notice => "Your plan has been changed to the #{subscription.name} plan!"
+  end
+  
   def cancel_subscription
     @subscription = current_user.subscription
     CancelCustomerWorker.perform_async(@subscription.id)
