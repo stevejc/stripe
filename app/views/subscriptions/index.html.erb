@@ -1,8 +1,10 @@
 <%= render 'layouts/error' %>
-<h3>Current Plan:</h3>
+<h1> Billing and Invoices</h1>
+<h3>Current Plan: <%= @subscription.name %></h3>
+
 
 <h3>Invoices</h3>
-<p>Your invoices are being emailed to:</p>
+<p>Your invoices are being emailed to: <%= @subscription.billing_email %></p>
 <%= link_to "Update Invoice", root_path %>
 
 
@@ -11,4 +13,4 @@
 
 
 <h3>Cancel Your Account</h3>
-<%= link_to ' Delete', cancel_subscription_path, data: {confirm: 'Are you sure you want to delete this account, no take backsies?'}, :class => 'btn float_right' %>
+<%= link_to 'Delete', cancel_subscription_path, data: {confirm: 'Are you sure you want to delete this account, no take backsies?'} %>

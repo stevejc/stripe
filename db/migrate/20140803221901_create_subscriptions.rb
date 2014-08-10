@@ -8,7 +8,7 @@ class CreateSubscriptions < ActiveRecord::Migration
       t.date :card_expiration
       t.string :stripe_id
       t.date :free_trial_expiration
-      t.string :plan, :null => false
+      t.integer :plan_id, :null => false
       
       t.timestamps
     end

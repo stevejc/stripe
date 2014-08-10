@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140803221901) do
+ActiveRecord::Schema.define(version: 20140809192007) do
+
+  create_table "plans", force: true do |t|
+    t.string  "name",             null: false
+    t.integer "rate", default: 0, null: false
+  end
 
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id",               null: false
@@ -21,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140803221901) do
     t.date     "card_expiration"
     t.string   "stripe_id"
     t.date     "free_trial_expiration"
-    t.string   "plan",                  null: false
+    t.integer  "plan_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
