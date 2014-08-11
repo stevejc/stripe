@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809192007) do
+ActiveRecord::Schema.define(version: 20140810185103) do
 
   create_table "plans", force: true do |t|
     t.string  "name",             null: false
     t.integer "rate", default: 0, null: false
   end
+
+  create_table "stripe_events", force: true do |t|
+    t.string   "stripe_id",   null: false
+    t.string   "stripe_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stripe_events", ["stripe_id"], name: "index_stripe_events_on_stripe_id", unique: true
 
   create_table "subscriptions", force: true do |t|
     t.integer  "user_id",               null: false

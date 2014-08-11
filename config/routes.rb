@@ -5,6 +5,7 @@ Stripe::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => 'registrations' }
   root 'welcome#index'
   get '/pricing', to: 'welcome#pricing'
+  resources :stripe_events, only: [:create]
   resources :subscriptions
   get '/cancel_subscription', to: 'subscriptions#cancel_subscription', as: :cancel_subscription
   get '/change_plan', to: 'subscriptions#change_plan'
