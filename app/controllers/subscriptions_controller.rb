@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_filter :authenticate_user!
+  before_action :verify_user
   
   def index
     @subscription = current_user.subscription

@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :email, :password, :current_password) }
   end
   
+  def verify_user
+    if !current_user
+      flash[:alert] = "You do not have authorization to access the requested page."
+      redirect_to root_path
+    end
+  end
+  
 end
