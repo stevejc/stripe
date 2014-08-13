@@ -8,12 +8,12 @@
 #  card_last4             :string(255)
 #  card_type              :string(255)
 #  card_expiration        :date
-#  stripe_token           :string(255)
 #  stripe_id              :string(255)
-#  free__trial_expiration :date
-#  plan                   :string(255)      not null
+#  free_trial_expiration  :date
+#  plan_id                :integer          not null
 #  created_at             :datetime
 #  updated_at             :datetime
+#  subscription_status_id :integer
 #
 
 class Subscription < ActiveRecord::Base
