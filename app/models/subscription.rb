@@ -19,7 +19,9 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
+  belongs_to :subscription_status
   delegate :name, to: :plan
+  delegate :status, to: :subscription_status
   
   attr_accessor :stripe_card_token, :email
   
