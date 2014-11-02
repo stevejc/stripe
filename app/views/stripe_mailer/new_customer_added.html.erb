@@ -1,6 +1,8 @@
 <html> 
   <body>
     <p>New Customer Added</p> 
-    <%= @charge.inspect %>
+    First name:<%= @subscription.user.first_name %>
+    Last name:<%= @subscription.user.last_name %>
+    Email:<%= @subscription.billing_email %>
   </body>
 </html>

@@ -31,8 +31,20 @@ class StripeEventsController < ApplicationController
     StripeMailer.admin_dispute_created(charge).deliver 
   end
   
-  def stripe_customer_subscription_created
-    StripeMailer.new_customer_added.deliver 
+  def stripe_customer_subscription_created(charge)
+    StripeMailer.new_customer_added(charge).deliver 
+  end
+  
+  def stripe_invoice_created(charge)
+    StripeMailer.invoice_stuff(charge).deliver 
+  end
+  
+  def stripe_invoice_payment_succeeded(charge)
+    StripeMailer.invoice_stuff(charge).deliver 
+  end
+  
+  def stripe_charge_succeeded(charge)
+    StripeMailer.invoice_stuff(charge).deliver 
   end
   
 end

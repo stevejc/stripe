@@ -3,13 +3,19 @@ class StripeMailer < ActionMailer::Base
   
   def admin_dispute_created(charge)
     @charge = charge
-    @subscription = Subscription.find_by(stripe_id: @charge.id)
-    if @sale
-      mail(to: 'you@example.com', subject: "Dispute created on charge #{@charge.id} for customer #{@subscription.billing_email}").deliver
-    end
+    @subscription = Subscription.find_by(stripe_id: @charge.customer)
+    mail(to: 'you@example.com', subject: "Dispute created on charge for customer - #{@subscription.billing_email}").deliver
   end
   
-  def new_customer_added
-    mail(to: 'you@example.com', subject: "New Customer Added").deliver
+  def new_customer_added(charge)
+    @charge = charge
+    @subscription = Subscription.find_by(stripe_id: @charge.customer)
+    mail(to: 'you@example.com', subject: "New Customer Added - #{@subscription.billing_email}").deliver
+  end
+  
+  def invoice_stuff(charge)
+    @charge = charge
+    @subscription = Subscription.find_by(stripe_id: @charge.customer)
+    mail(to: 'you@example.com', subject: "Invoice stuff for customer - #{@subscription.billing_email}").deliver
   end
 end
